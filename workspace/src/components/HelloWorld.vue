@@ -9,6 +9,15 @@
       <p>{{intercalado(true)}}</p>
       <p>{{intercalado(false)}}</p>
     </div>
+    <hr>
+    <div>
+      Respuestas
+      <h1>1. B</h1>
+      <h1>2. B</h1>
+      <h1>3. D</h1>
+      <h1>4. B</h1>
+      <h1>5. </h1>
+    </div>
   </div>
 </template>
 
@@ -43,10 +52,7 @@ export default {
     },
     intercalado(par){
       return this.text.split('').map((letra, indice) => {
-        if( (indice % 2 === 0) === par){
-          return letra.toUpperCase()
-        }
-        return letra;
+        return ( (indice % 2 === 0) === par) ? letra.toUpperCase() : letra;
       }).join('');
     }
   },
