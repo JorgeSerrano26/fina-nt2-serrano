@@ -3,11 +3,11 @@
     <input v-model="text" />
     <div v-if="text.length > 0">
       <p>Largo {{ text.length }}</p>
-      <p>{{code()}}</p>
-      <p>{{mayus()}}</p>
-      <p>{{min()}}</p>
-      <p>{{intercalado(true)}}</p>
-      <p>{{intercalado(false)}}</p>
+      <p>{{text | code}}</p>
+      <p>{{text | mayus}}</p>
+      <p>{{text | min}}</p>
+      <p>{{text | intercalado(true)}}</p>
+      <p>{{text | intercalado(false)}}</p>
     </div>
     <hr>
     <div>
@@ -29,9 +29,9 @@ export default {
       text: ''
     }
   },
-  methods: {
-    code(){
-      return this.text.toLowerCase().split('').map(letra => {
+  filters: {
+    code(txt){
+      return txt.toLowerCase().split('').map(letra => {
         if(letra === 'a') {
           return 'u';
         }else if(letra === 'e'){
@@ -44,14 +44,14 @@ export default {
         return letra;
       }).join('')
     },
-    mayus(){
-      return this.text.toUpperCase();
+    mayus(txt){
+      return txt.toUpperCase();
     },
-    min(){
-      return this.text.toLowerCase();
+    min(txt){
+      return txt.toLowerCase();
     },
-    intercalado(par){
-      return this.text.split('').map((letra, indice) => {
+    intercalado(txt,par){
+      return txt.split('').map((letra, indice) => {
         return ( (indice % 2 === 0) === par) ? letra.toUpperCase() : letra;
       }).join('');
     }
